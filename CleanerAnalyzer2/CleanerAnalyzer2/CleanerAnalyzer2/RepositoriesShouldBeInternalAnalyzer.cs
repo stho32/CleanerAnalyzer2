@@ -6,7 +6,7 @@ using System.Collections.Immutable;
 namespace CleanerAnalyzer2
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class RepositoriesShouldAllBeInternalAnalyzer : DiagnosticAnalyzer
+    public class RepositoriesShouldBeInternalAnalyzer : DiagnosticAnalyzer
     {
         public const string DiagnosticId = "RepositoriesShouldBeInternal";
 
