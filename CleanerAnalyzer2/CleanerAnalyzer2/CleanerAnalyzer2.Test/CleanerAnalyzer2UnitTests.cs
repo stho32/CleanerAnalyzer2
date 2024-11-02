@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using VerifyCS = CleanerAnalyzer2.Test.CSharpCodeFixVerifier<
-    CleanerAnalyzer2.CleanerAnalyzer2Analyzer,
+    CleanerAnalyzer2.RepositoriesShouldAllBeInternalAnalyzer,
     CleanerAnalyzer2.CleanerAnalyzer2CodeFixProvider>;
 
 namespace CleanerAnalyzer2.Test
