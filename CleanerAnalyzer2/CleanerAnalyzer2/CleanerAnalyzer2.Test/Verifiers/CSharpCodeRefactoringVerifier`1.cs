@@ -1,9 +1,9 @@
-﻿using Microsoft.CodeAnalysis.CodeRefactorings;
-using Microsoft.CodeAnalysis.Testing;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CodeRefactorings;
+using Microsoft.CodeAnalysis.Testing;
 
-namespace CleanerAnalyzer2.Test
+namespace CleanerAnalyzer2.Test.Verifiers
 {
     public static partial class CSharpCodeRefactoringVerifier<TCodeRefactoring>
         where TCodeRefactoring : CodeRefactoringProvider, new()

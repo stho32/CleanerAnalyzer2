@@ -47,12 +47,18 @@ namespace CleanerAnalyzer2
             var internalModifier = SyntaxFactory.Token(SyntaxKind.InternalKeyword)
                 .WithLeadingTrivia(SyntaxFactory.Space);
 
-            // Get all modifiers that are NOT access modifiers
+            // Get all modifiers that are NOT access modifiers (if any exist)
             var nonAccessModifiers = typeDecl.Modifiers.Where(m => !IsAccessModifier(m));
             
-            // Create new modifier list with just 'internal' and the non-access modifiers
-            var newModifiers = SyntaxFactory.TokenList(nonAccessModifiers)
-                .Add(internalModifier);
+            // Create new modifier list starting with 'internal'
+            var newModifiers = new SyntaxTokenList();
+            newModifiers = newModifiers.Add(internalModifier);
+
+            // Add any remaining non-access modifiers
+            foreach (var modifier in nonAccessModifiers)
+            {
+                newModifiers = newModifiers.Add(modifier);
+            }
 
             // Create the new type declaration with updated modifiers
             var newTypeDecl = typeDecl.WithModifiers(newModifiers);

@@ -1,9 +1,9 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using System;
+﻿using System;
 using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 
-namespace CleanerAnalyzer2.Test
+namespace CleanerAnalyzer2.Test.Verifiers
 {
     internal static class CSharpVerifierHelper
     {

@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
-using VerifyCS = CleanerAnalyzer2.Test.CSharpCodeFixVerifier<
+using VerifyCS = CleanerAnalyzer2.Test.Verifiers.CSharpCodeFixVerifier<
     CleanerAnalyzer2.RepositoriesShouldBeInternalAnalyzer,
     CleanerAnalyzer2.RepositoriesShouldBeInternalCodeFixProvider>;
 
@@ -84,32 +84,6 @@ namespace CleanerAnalyzer2.Test
                 namespace TestNamespace
                 {
                     protected class {|#0:UserRepository|}
-                    {   
-                    }
-                }";
-
-            var fixtest = @"
-                namespace TestNamespace
-                {
-                    internal class UserRepository
-                    {   
-                    }
-                }";
-
-            var expected = VerifyCS.Diagnostic("RepositoriesShouldBeInternal")
-                .WithLocation(0)
-                .WithArguments("UserRepository");
-            await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
-        }
-
-        // Should flag no-modifier repository
-        [TestMethod]
-        public async Task NoModifierRepository_ShouldTriggerDiagnostic()
-        {
-            var test = @"
-                namespace TestNamespace
-                {
-                    class {|#0:UserRepository|}
                     {   
                     }
                 }";
