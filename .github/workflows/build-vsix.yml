@@ -30,23 +30,5 @@ jobs:
     - name: Build VSIX
       run: msbuild CleanerAnalyzer2\CleanerAnalyzer2.sln /p:Configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal /v:m
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.date.outputs.date }}
-        release_name: Release ${{ steps.date.outputs.date }}
-        draft: false
-        prerelease: false
-
-    - name: Upload VSIX to Release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: .\CleanerAnalyzer2\CleanerAnalyzer2\CleanerAnalyzer2.Package\bin\Release\CleanerAnalyzer2.*.nupkg
-        asset_name: CleanerAnalyzer2.nupkg
-        asset_content_type: application/octet-stream
+    - name: Publish NuGet package
+      run: dotnet nuget push .\CleanerAnalyzer2\CleanerAnalyzer2\CleanerAnalyzer2.Package\bin\Release\*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
