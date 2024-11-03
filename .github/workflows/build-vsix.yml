@@ -42,7 +42,7 @@ jobs:
         prerelease: false
 
     - name: List files in output directory
-      run: dir CleanerAnalyzer2\CleanerAnalyzer2\bin\Release /s
+      run: dir /s
       shell: cmd
 
     - name: Upload VSIX to Release
