@@ -41,16 +41,11 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: List files in output directory
-      run: dir /s
-      shell: cmd
-
     - name: Upload VSIX to Release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: .\CleanerAnalyzer2\CleanerAnalyzer2\CleanerAnalyzer2.Vsix\bin\Release\net472\CleanerAnalyzer2.Vsix.vsix
-        asset_name: CleanerAnalyzer2-${{ steps.date.outputs.date }}.vsix
+        asset_path: .\CleanerAnalyzer2\CleanerAnalyzer2\CleanerAnalyzer2.Package\bin\Release\CleanerAnalyzer2.*.nupkg 
         asset_content_type: application/octet-stream
